@@ -4,11 +4,13 @@ import './globals.css'
 import {GlobalStateProvider} from '@/components/providers/GlobalStateProvider'
 import {ThemeProvider} from 'next-themes'
 import {BackgroundProvider} from '@/components/providers/BackgroundProvider'
+import NextTopLoader from 'nextjs-toploader'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
 	variable: '--font-geist-sans',
 })
+
 const geistMono = localFont({
 	src: './fonts/GeistMonoVF.woff',
 	variable: '--font-geist-mono',
@@ -35,6 +37,8 @@ export default function RootLayout({
 				>
 					<GlobalStateProvider>
 						<BackgroundProvider>
+							<NextTopLoader showSpinner={false} color="#fff" />
+
 							{children}
 						</BackgroundProvider>
 					</GlobalStateProvider>

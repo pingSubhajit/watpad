@@ -48,7 +48,7 @@ const AboutPage = () => {
 					The product is free to use. However, no new features, bug fixes, or any meaningful support will be
 					guaranteed. The project is open source and can be found
 					on <a href={githubRepo} target="_blank"
-						className="text-yellow-400 hover:text-yellow-500 transition">
+						className="text-cyan-300 hover:text-cyan-400 transition">
 							GitHub
 					</a>. Feel free to fork, modify and host your own version. No attribution required.
 				</p>
@@ -58,7 +58,7 @@ const AboutPage = () => {
 
 			<footer className="flex justify-between items-center w-full">
 				<p className="mt-2 text-sm font-medium text-neutral-400 italic">v0.01</p>
-				<a href={portfolio} target="_blank" className="text-yellow-400 hover:text-yellow-500 transition">
+				<a href={portfolio} target="_blank" className="text-cyan-300 hover:text-cyan-400 transition">
 					<p className="mt-2 text-sm font-medium text-right">Subhajit</p>
 				</a>
 			</footer>
