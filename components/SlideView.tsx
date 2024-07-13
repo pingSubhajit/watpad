@@ -1,9 +1,11 @@
 'use client'
 
+import styles from '@/app/slide-view.module.scss'
+
 const SlideView = ({slideContent}: { slideContent: string }) => {
 	return (
-		<div>
-			<div dangerouslySetInnerHTML={{__html: slideContent}}/>
+		<div className="h-full w-full flex justify-center items-center">
+			<div dangerouslySetInnerHTML={{__html: slideContent}} className={styles.slide_view}/>
 		</div>
 	)
 }
