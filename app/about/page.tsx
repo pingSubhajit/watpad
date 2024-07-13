@@ -5,13 +5,13 @@ import {Metadata} from 'next'
 import {Separator} from '@/components/ui/separator'
 
 export const metadata: Metadata = {
-	title: 'About Ticker - Motivation, Creator, License, and Credits',
-	description: 'Learn about the motivation behind Ticker, a mobile-first, long-duration, cloud-synced stopwatch app. ' +
-		'Discover the creator, the MIT license, and credits. Ticker is free, open-source, and designed for ' +
-		'long-term time tracking.',
-	keywords: ['Ticker', 'about Ticker', 'stopwatch motivation', 'Ticker creator', 'Ticker license', 'MIT license',
-		'stopwatch credits', 'open source stopwatch', 'free stopwatch app', 'long duration stopwatch',
-		'cloud-synced stopwatch'
+	title: 'About Watpad - Motivation, Creator, and License',
+	description: 'Learn about the motivation behind Watpad, a mobile-first, Word Association Test practice app. ' +
+		'Discover the creator, the MIT license, and credits. Watpad is free, open-source, and designed for ' +
+		'WAT preparation',
+	keywords: [
+		'watpad', 'about', 'motivation', 'creator', 'license', 'credits', 'open-source', 'ssb', 'wat',
+		'practice', 'app', 'word association test', 'ssb interview', 'ssb wat', 'ssb wat practice',
 	]
 }
 
