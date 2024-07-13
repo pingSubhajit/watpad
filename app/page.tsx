@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import {Button} from '@/components/ui/button'
 import {Dialog, DialogTrigger} from '@/components/ui/dialog'
-import PPTUploaderDialog from '@/app/PPTUploaderDialog'
+import PPTUploaderDialog from '@/components/dialogs/PPTUploaderDialog'
 
 export default function Home() {
 	return (
