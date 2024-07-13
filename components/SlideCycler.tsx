@@ -5,6 +5,7 @@ import {useWords} from '@/components/providers/GlobalStateProvider'
 import React, {useEffect, useState} from 'react'
 import {notFound} from 'next/navigation'
 import RemainingTime from '@/components/RemainingTime'
+import {Howl} from 'howler'
 
 const SlideCycler = ({timer=15}: {timer?: number}) => {
 	const {words} = useWords()
@@ -13,6 +14,10 @@ const SlideCycler = ({timer=15}: {timer?: number}) => {
 		notFound()
 	}
 
+	const sound = new Howl({
+		src: ['/sounds/boop.mp3']
+	})
+
 	const [selectedSlide, setSelectedSlide] = useState<number>(0)
 	const [timeRemaining, setTimeRemaining] = useState<number>(timer)
 
@@ -20,6 +25,7 @@ const SlideCycler = ({timer=15}: {timer?: number}) => {
 		const interval = setInterval(() => {
 			setSelectedSlide((selectedSlide + 1) % words.length)
 			setTimeRemaining(timer)
+			sound.play()
 		}, timer * 1000)
 
 		return () => clearInterval(interval)
