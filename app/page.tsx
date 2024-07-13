@@ -4,27 +4,12 @@ import {Dialog, DialogTrigger} from '@/components/ui/dialog'
 import PPTUploaderDialog from '@/components/dialogs/PPTUploaderDialog'
 import {Cookie, Info, Scale} from 'lucide-react'
 import Link from 'next/link'
-import {defaultUrl, portfolio} from '@/lib/constants'
 import {Metadata} from 'next'
 
 export const metadata: Metadata = {
-	metadataBase: new URL(defaultUrl),
 	title: 'Watpad - Word Association Test Practice',
-	description: 'Watpad is a mobile-first, Word Association Test practice app. Designed for WAT preparation. ' +
-		'The app is designed to create an interactive environment from uploaded .ppt file of practice words to ' +
-		'practice the test in similar environment as in SSB Interview.',
-	keywords: [
-		'watpad', 'word association test', 'wat', 'practice', 'app', 'ssb', 'ssb wat', 'ssb wat practice',
-		'ssb interview', 'ssb wat practice app', 'word association test practice', 'wat practice app',
-		'word association test practice app', 'wat practice', 'word association test practice',
-	],
-	generator: 'Next.js',
-	manifest: '/manifest.webmanifest',
-	icons: [
-		{ rel: 'apple-touch-icon', url: 'logo.png' },
-		{ rel: 'icon', url: 'logo.png' },
-	],
-	authors: [{ name: 'Subhajit Kundu', url: portfolio }]
+	description: 'Watpad is a mobile-first, Word Association Test practice app. Designed for WAT preparation, ' +
+		'it is free, open-source, and cloud-synced. Practice long duration tests with ease.',
 }
 
 export default function Home() {
