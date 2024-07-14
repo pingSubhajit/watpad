@@ -7,8 +7,6 @@ import {BackgroundProvider} from '@/components/providers/background-provider'
 import {defaultUrl, portfolio} from '@/lib/constants'
 import {Toaster} from '@/components/ui/sonner'
 import ProgressBarProvider from '@/components/providers/progress-bar-provider'
-import {AssistantModal} from '@/components/ui/assistant-ui/assistant-modal'
-import AiRuntimeProvider from '@/components/providers/ai-runtime-provider'
 import {AI} from '@/app/actions'
 
 const geistSans = localFont({
@@ -54,14 +52,10 @@ export default function RootLayout({
 						<GlobalStateProvider>
 							<BackgroundProvider>
 								<AI>
-									<AiRuntimeProvider>
-										<div vaul-drawer-wrapper="" className="bg-background">
-											{children}
-
-											<AssistantModal />
-											<Toaster/>
-										</div>
-									</AiRuntimeProvider>
+									<div vaul-drawer-wrapper="" className="bg-background">
+										{children}
+										<Toaster/>
+									</div>
 								</AI>
 							</BackgroundProvider>
 						</GlobalStateProvider>

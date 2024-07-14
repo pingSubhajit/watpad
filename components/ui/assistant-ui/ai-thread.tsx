@@ -8,6 +8,7 @@ import {MarkdownText} from '@/components/ui/assistant-ui/markdown-text'
 import useChatScroll from '@/hooks/use-chat-scroll'
 import {Button} from '@/components/ui/button'
 import {Loader2, Send} from 'lucide-react'
+import {AnimatePresence, motion} from 'framer-motion'
 
 const AiThread = () => {
 	const {messages, input, handleInputChange, handleSubmit, isLoading} = useChat({
@@ -17,7 +18,7 @@ const AiThread = () => {
 	const ref = useChatScroll(messages)
 
 	return (
-		<div className="p-4 pt-0 border h-full flex flex-col justify-end">
+		<div className="p-4 pt-0 h-full flex flex-col justify-end">
 			{messages.length === 0 && <AiThreadEmpty />}
 			<div className="text-primary/80 pt-8 space-y-2 overflow-y-auto custom-scroll" ref={ref}>
 				{messages.map(message => <div key={message.id} className={cn(
@@ -50,9 +51,16 @@ const AiThread = () => {
 						type="submit"
 						className="px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary-hover transition-colors"
 					>
-						{isLoading && <Loader2 className="w-4 h-4 mr-1 animate-spin" />}
-						<p>Send</p>
-						{!isLoading && <Send className="w-4 h-4 ml-1" />}
+						<AnimatePresence mode="wait">
+							{isLoading && <motion.div initial={{scale: 0}} animate={{scale: 1}} exit={{scale: 0}}>
+								<Loader2 className="w-4 h-4 mr-1 animate-spin" />
+							</motion.div>}
+							<motion.p layout layoutId="send_text">Send</motion.p>
+							{!isLoading && <motion.div initial={{scale: 0}} animate={{scale: 1}} exit={{scale: 0}}>
+								<Send className="w-4 h-4 ml-1"/>
+							</motion.div>}
+						</AnimatePresence>
+
 					</Button>
 				</div>
 			</form>

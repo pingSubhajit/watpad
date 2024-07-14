@@ -1,32 +1,37 @@
 'use client'
 
 import {BotIcon, ChevronDownIcon} from 'lucide-react'
-
-import {type FC, forwardRef} from 'react'
-import {AssistantModalPrimitive} from '@assistant-ui/react'
+import {type FC, forwardRef, useState} from 'react'
 import {TooltipIconButton} from '@/components/ui/assistant-ui/tooltip-icon-button'
 import AiThread from '@/components/ui/assistant-ui/ai-thread'
+import Kbd from '@/components/ui/kbd'
+import {Popover, PopoverContent, PopoverTrigger} from '@/components/ui/popover'
+import {PopoverAnchor} from '@radix-ui/react-popover'
+import {useHotkeys} from '@mantine/hooks'
 
 export const AssistantModal: FC = () => {
+	const [aiChatOpen, setAiChatOpen] = useState(false)
+
+	useHotkeys([
+		['a', () => {
+			if (!aiChatOpen) setAiChatOpen(true)
+		}]
+	])
+
 	return (
-		<AssistantModalPrimitive.Root>
-			<AssistantModalPrimitive.Anchor className="fixed bottom-8 left-8 size-11">
-				<AssistantModalPrimitive.Trigger asChild>
+		<Popover open={aiChatOpen} onOpenChange={setAiChatOpen}>
+			<PopoverAnchor className="fixed bottom-36 left-1/2 -translate-x-1/2 lg:bottom-8 lg:left-8 lg:transform-none size-11">
+				<PopoverTrigger asChild>
 					<FloatingAssistantButton />
-				</AssistantModalPrimitive.Trigger>
-			</AssistantModalPrimitive.Anchor>
-			<AssistantModalPrimitive.Content
+				</PopoverTrigger>
+			</PopoverAnchor>
+			<PopoverContent
 				sideOffset={16}
-				className="bg-popover text-popover-foreground data-[state=closed]:animate-out
-				data-[state=open]:animate-in data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0
-				data-[state=closed]:zoom-out data-[state=open]:zoom-in data-[state=open]:slide-in-from-bottom-1/2
-				data-[state=open]:slide-in-from-left-1/2 data-[state=closed]:slide-out-to-bottom-1/2
-				data-[state=closed]:slide-out-to-left-1/2 z-50 h-[800px] w-[600px] ml-8 overflow-clip rounded-xl border
-				p-0 shadow-md outline-none [&>div]:bg-inherit"
+				className="z-50 h-[650px] lg:h-[800px] w-[600px] max-w-[90vw] ml-8 overflow-clip rounded-xl p-0"
 			>
 				<AiThread />
-			</AssistantModalPrimitive.Content>
-		</AssistantModalPrimitive.Root>
+			</PopoverContent>
+		</Popover>
 	)
 }
 
@@ -41,7 +46,10 @@ const FloatingAssistantButton = forwardRef<
 	return (
 		<TooltipIconButton
 			variant="default"
-			tooltip={tooltip}
+			tooltip={<div className="flex items-center gap-2">
+				{tooltip}
+				<Kbd>A</Kbd>
+			</div>}
 			side="left"
 			{...rest}
 			className="size-full rounded-full shadow transition-transform hover:scale-110 active:scale-90"

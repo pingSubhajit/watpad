@@ -1,13 +1,13 @@
 'use client'
 
-import {forwardRef} from 'react'
+import {forwardRef, ReactNode} from 'react'
 
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger,} from '@/components/ui/tooltip'
 import {Button, ButtonProps} from '@/components/ui/button'
 import {cn} from '@/lib/utils'
 
 export type TooltipIconButtonProps = ButtonProps & {
-  tooltip: string;
+  tooltip: ReactNode;
   side?: 'top' | 'bottom' | 'left' | 'right';
 };
 
@@ -30,7 +30,7 @@ export const TooltipIconButton = forwardRef<
 						<span className="sr-only">{tooltip}</span>
 					</Button>
 				</TooltipTrigger>
-				<TooltipContent side={side}>{tooltip}</TooltipContent>
+				<TooltipContent side={side} sideOffset={8}>{tooltip}</TooltipContent>
 			</Tooltip>
 		</TooltipProvider>
 	)

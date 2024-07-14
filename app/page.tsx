@@ -6,6 +6,7 @@ import Link from 'next/link'
 import {Metadata} from 'next'
 import EndlessModeDialog from '@/components/dialogs/EndlessModeDialog'
 import {Credenza, CredenzaTrigger} from '@/components/ui/credenza'
+import {AssistantModal} from '@/components/ui/assistant-ui/assistant-modal'
 
 export const metadata: Metadata = {
 	title: 'Watpad - Word Association Test Practice',
@@ -50,6 +51,8 @@ export default function Home() {
 						<PPTUploaderDialog />
 					</Credenza>
 				</div>
+
+				<AssistantModal />
 			</main>
 			<footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
 				<Link
