@@ -59,6 +59,11 @@ const config = {
 				sm: 'calc(var(--radius) - 4px)',
 			},
 			keyframes: {
+				gradient: {
+					to: {
+						backgroundPosition: 'var(--bg-size) 0',
+					},
+				},
 				'accordion-down': {
 					from: { height: '0' },
 					to: { height: 'var(--radix-accordion-content-height)' },
@@ -71,13 +76,11 @@ const config = {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+				gradient: 'gradient 8s linear infinite',
 			},
 		},
 	},
-	plugins: [
-		require('tailwindcss-animate'),
-		require('@tailwindcss/typography')
-	],
+	plugins: [require('tailwindcss-animate')],
 } satisfies Config
 
 export default config

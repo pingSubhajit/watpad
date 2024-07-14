@@ -1,6 +1,6 @@
 'use client'
 
-import {useWords} from '@/components/providers/GlobalStateProvider'
+import {useWords} from '@/components/providers/global-state-provider'
 import {Input} from '@/components/ui/input'
 import {Button} from '@/components/ui/button'
 import {Loader2} from 'lucide-react'

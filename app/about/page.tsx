@@ -43,21 +43,32 @@ const AboutPage = () => {
 			</div>
 
 			<div>
+				<h2 className="text-lg text-neutral-200 font-medium">AI Feedback</h2>
+				<p className="mt-2 text-[15px] font-medium text-neutral-400 font-sans leading-relaxed">
+					We've integrated AI feedback to help you improve your responses. The AI feedback is based on the
+					general factors that play out in the SSB Interview. The feedback is not guaranteed to be accurate.
+					To use it, go to the <Link href="/" className="text-cyan-300 hover:text-cyan-400 transition">
+					home page</Link> and click on the button in the bottom right-hand corner or simply
+					press "A" on your keyboard
+				</p>
+			</div>
+
+			<div>
 				<h2 className="text-lg text-neutral-200 font-medium">Contribute</h2>
 				<p className="mt-2 text-[15px] font-medium text-neutral-400 font-sans leading-relaxed">
 					The product is free to use. However, no new features, bug fixes, or any meaningful support will be
 					guaranteed. The project is open source and can be found
 					on <a href={githubRepo} target="_blank"
-						className="text-cyan-300 hover:text-cyan-400 transition">
-							GitHub
+					      className="text-cyan-300 hover:text-cyan-400 transition">
+					GitHub
 					</a>. Feel free to fork, modify and host your own version. No attribution required.
 				</p>
 			</div>
 
-			<Separator />
+			<Separator/>
 
 			<footer className="flex justify-between items-center w-full">
-				<p className="mt-2 text-sm font-medium text-neutral-400 italic">v0.01</p>
+				<p className="mt-2 text-sm font-medium text-neutral-400 italic">v0.02</p>
 				<a href={portfolio} target="_blank" className="text-cyan-300 hover:text-cyan-400 transition">
 					<p className="mt-2 text-sm font-medium text-right">Subhajit</p>
 				</a>

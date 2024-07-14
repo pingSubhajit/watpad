@@ -1,6 +1,6 @@
 'use client'
 
-import {useBackground} from '@/components/providers/BackgroundProvider'
+import {useBackground} from '@/components/providers/background-provider'
 
 const Background = () => {
 	const {backgroundIndex} = useBackground()

@@ -1,7 +1,7 @@
 'use client'
 
-import SlidesUploader from '@/components/providers/SlidesUploader'
-import {useWords} from '@/components/providers/GlobalStateProvider'
+import SlidesUploader from '@/components/SlidesUploader'
+import {useWords} from '@/components/providers/global-state-provider'
 import {Button} from '@/components/ui/button'
 import Link from 'next/link'
 import {Input} from '@/components/ui/input'
