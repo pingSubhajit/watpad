@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 const AboutPage = () => {
 	return (
-		<main className="flex flex-col items-start justify-center gap-8 min-h-svh w-full mx-auto max-w-[600px]">
+		<main className="flex flex-col items-start justify-center gap-8 min-h-lvh w-full mx-auto max-w-[600px] px-8">
 			<header className="flex justify-between items-center w-full">
 				<Link href="/">
 					<Image src="/logo.svg" alt="Ticker logo" width={180} height={38} className="w-24"/>
