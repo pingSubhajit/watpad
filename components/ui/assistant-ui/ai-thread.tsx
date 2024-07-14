@@ -6,6 +6,8 @@ import {cn} from '@/lib/utils'
 import {Avatar, AvatarFallback, AvatarImage} from '@/components/ui/avatar'
 import {MarkdownText} from '@/components/ui/assistant-ui/markdown-text'
 import useChatScroll from '@/hooks/use-chat-scroll'
+import {Button} from '@/components/ui/button'
+import {Loader2, Send} from 'lucide-react'
 
 const AiThread = () => {
 	const {messages, input, handleInputChange, handleSubmit, isLoading} = useChat({
@@ -36,11 +38,23 @@ const AiThread = () => {
 			</div>
 
 			<form onSubmit={handleSubmit} className="mt-4">
-				<Input
-					value={input}
-					placeholder={'Write a message...'}
-					onChange={handleInputChange}
-				/>
+				<div className="flex items-center w-full gap-2">
+					<Input
+						value={input}
+						placeholder="Type your message here"
+						onChange={handleInputChange}
+						className="flex-1"
+					/>
+					<Button
+						disabled={isLoading || !input}
+						type="submit"
+						className="px-4 py-2 rounded-md bg-primary text-primary-foreground hover:bg-primary-hover transition-colors"
+					>
+						{isLoading && <Loader2 className="w-4 h-4 mr-1 animate-spin" />}
+						<p>Send</p>
+						{!isLoading && <Send className="w-4 h-4 ml-1" />}
+					</Button>
+				</div>
 			</form>
 		</div>
 	)
@@ -52,7 +66,7 @@ const AiThreadEmpty = () => {
 	return (
 		<div className="flex flex-grow basis-full flex-col items-center justify-center h-full">
 			<Avatar className="w-16 h-16 border rounded-md">
-				<AvatarImage src="/logo.png" />
+				<AvatarImage src="/logo.png"/>
 				<AvatarFallback>WP</AvatarFallback>
 			</Avatar>
 			<p className="mt-4 font-medium text-lg">Watpad Assistant</p>
