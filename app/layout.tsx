@@ -6,6 +6,7 @@ import {ThemeProvider} from 'next-themes'
 import {BackgroundProvider} from '@/components/providers/BackgroundProvider'
 import NextTopLoader from 'nextjs-toploader'
 import {defaultUrl, portfolio} from '@/lib/constants'
+import {Toaster} from '@/components/ui/sonner'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -52,6 +53,8 @@ export default function RootLayout({
 
 							<div vaul-drawer-wrapper="" className="bg-background">
 								{children}
+
+								<Toaster />
 							</div>
 						</BackgroundProvider>
 					</GlobalStateProvider>

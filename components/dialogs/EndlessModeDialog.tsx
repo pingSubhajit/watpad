@@ -17,6 +17,7 @@ import {
 	CredenzaHeader,
 	CredenzaTitle
 } from '@/components/ui/credenza'
+import {toast} from 'sonner'
 
 const formSchema = z.object({
 	timer: z.number().min(5).max(60),
@@ -39,7 +40,7 @@ const EndlessModeDialog = () => {
 			setWords(words)
 			router.push(`/cycle?timer=${values.timer}`)
 		} catch (error) {
-			console.error(error)
+			toast.error('Failed to start practice. Please try again later.')
 		}
 	}
 
