@@ -48,9 +48,11 @@ export default function RootLayout({
 				>
 					<GlobalStateProvider>
 						<BackgroundProvider>
-							<NextTopLoader showSpinner={false} color="#fff" />
+							<NextTopLoader showSpinner={false} color="#fff"/>
 
-							{children}
+							<div vaul-drawer-wrapper="" className="bg-background">
+								{children}
+							</div>
 						</BackgroundProvider>
 					</GlobalStateProvider>
 				</ThemeProvider>
