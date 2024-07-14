@@ -4,9 +4,9 @@ import './globals.css'
 import {GlobalStateProvider} from '@/components/providers/GlobalStateProvider'
 import {ThemeProvider} from 'next-themes'
 import {BackgroundProvider} from '@/components/providers/BackgroundProvider'
-import NextTopLoader from 'nextjs-toploader'
 import {defaultUrl, portfolio} from '@/lib/constants'
 import {Toaster} from '@/components/ui/sonner'
+import ProgressBarProvider from '@/components/providers/progress-bar-provider'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -42,23 +42,23 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-				<ThemeProvider
-					attribute="class"
-					defaultTheme="dark"
-					disableTransitionOnChange
-				>
-					<GlobalStateProvider>
-						<BackgroundProvider>
-							<NextTopLoader showSpinner={false} color="#fff"/>
+				<ProgressBarProvider>
+					<ThemeProvider
+						attribute="class"
+						defaultTheme="dark"
+						disableTransitionOnChange
+					>
+						<GlobalStateProvider>
+							<BackgroundProvider>
+								<div vaul-drawer-wrapper="" className="bg-background">
+									{children}
 
-							<div vaul-drawer-wrapper="" className="bg-background">
-								{children}
-
-								<Toaster />
-							</div>
-						</BackgroundProvider>
-					</GlobalStateProvider>
-				</ThemeProvider>
+									<Toaster />
+								</div>
+							</BackgroundProvider>
+						</GlobalStateProvider>
+					</ThemeProvider>
+				</ProgressBarProvider>
 			</body>
 		</html>
 	)

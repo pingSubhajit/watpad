@@ -8,7 +8,6 @@ import {fetchRandomWords} from '@/lib/data'
 import {z} from 'zod'
 import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
-import {useRouter} from 'next/navigation'
 import {Form, FormControl, FormField, FormItem, FormMessage} from '@/components/ui/form'
 import {
 	CredenzaBody,
@@ -18,6 +17,7 @@ import {
 	CredenzaTitle
 } from '@/components/ui/credenza'
 import {toast} from 'sonner'
+import {useRouter} from 'next-nprogress-bar'
 
 const formSchema = z.object({
 	timer: z.number().min(5).max(60),
