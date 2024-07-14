@@ -5,6 +5,7 @@ import PPTUploaderDialog from '@/components/dialogs/PPTUploaderDialog'
 import {Cookie, Info, Scale} from 'lucide-react'
 import Link from 'next/link'
 import {Metadata} from 'next'
+import EndlessModeDialog from '@/components/dialogs/EndlessModeDialog'
 
 export const metadata: Metadata = {
 	title: 'Watpad - Word Association Test Practice',
@@ -32,9 +33,14 @@ export default function Home() {
 				</ol>
 
 				<div className="flex gap-4 items-center flex-col sm:flex-row">
-					<Button className="rounded-full" size="lg">
-                        Endless mode
-					</Button>
+					<Dialog>
+						<DialogTrigger asChild>
+							<Button className="rounded-full" size="lg">
+                                Endless mode
+							</Button>
+						</DialogTrigger>
+						<EndlessModeDialog />
+					</Dialog>
 					<Dialog>
 						<DialogTrigger asChild>
 							<Button variant="outline" className="rounded-full" size="lg">

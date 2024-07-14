@@ -36,7 +36,10 @@ const PPTUploaderDialog = () => {
 					</p>
 
 					<div className="mt-3 flex items-stretch justify-between gap-2">
-						<Input className="w-24" placeholder="Timer" type="number" value={timer} onChange={event => handleTimerChange(Number(event.target.value))} />
+						<Input
+							className="w-24" placeholder="Timer" type="number" value={timer}
+							onChange={event => handleTimerChange(Number(event.target.value))}
+						/>
 						<Link href={`/cycle?timer=${timer}`} className="w-full">
 							<Button size="sm" className="w-full border border-primary">Start practice</Button>
 						</Link>
