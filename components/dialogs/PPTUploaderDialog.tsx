@@ -13,10 +13,12 @@ import {
 	CredenzaHeader,
 	CredenzaTitle
 } from '@/components/ui/credenza'
+import {Switch} from '@/components/ui/switch'
 
 const PPTUploaderDialog = () => {
 	const {words} = useWords()
 	const [timer, setTimer] = useState(15)
+	const [randomize, setRandomize] = useState(false)
 
 	const handleTimerChange = (timer: number) => {
 		setTimer(timer)
@@ -42,12 +44,22 @@ const PPTUploaderDialog = () => {
 							<span className="text-primary">{words.length}</span> words found in the presentation file.
 						</p>
 
+						<div className="mt-2 flex justify-between items-center">
+							<span className="text-sm text-muted-foreground">Randomize slides</span>
+							<Switch checked={randomize} onCheckedChange={checked => setRandomize(checked)} />
+						</div>
+
 						<div className="mt-3 flex items-stretch justify-between gap-2">
 							<Input
 								className="w-24" placeholder="Timer" type="number" value={timer}
 								onChange={event => handleTimerChange(Number(event.target.value))}
 							/>
-							<Link href={`/cycle?timer=${timer}`} className="w-full">
+							<Link
+								href={{
+									pathname: '/cycle',
+									query: {timer, randomize}
+								}}
+								className="w-full">
 								<Button size="sm" className="w-full border border-primary">Start practice</Button>
 							</Link>
 						</div>

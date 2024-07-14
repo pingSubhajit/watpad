@@ -9,8 +9,9 @@ import {Howl} from 'howler'
 import {Button} from '@/components/ui/button'
 import Kbd from '@/components/ui/kbd'
 import {useHotkeys} from '@mantine/hooks'
+import {getRandomNumber} from '@/lib/utils'
 
-const SlideCycler = ({timer=15}: {timer?: number}) => {
+const SlideCycler = ({timer=15, randomize=false}: {timer?: number, randomize?: boolean}) => {
 	const {words} = useWords()
 
 	if (words.length === 0) {
@@ -26,9 +27,13 @@ const SlideCycler = ({timer=15}: {timer?: number}) => {
 
 	useEffect(() => {
 		const interval = setInterval(() => {
-			setSelectedSlide((selectedSlide + 1) % words.length)
-			setTimeRemaining(timer)
+			if (randomize) {
+				setSelectedSlide(getRandomNumber(0, words.length - 1))
+			} else {
+				setSelectedSlide((selectedSlide + 1) % words.length)
+			}
 			sound.play()
+			setTimeRemaining(timer)
 		}, timer * 1000)
 
 		return () => clearInterval(interval)
@@ -43,7 +48,11 @@ const SlideCycler = ({timer=15}: {timer?: number}) => {
 	}, [timeRemaining])
 
 	const nextSlide = () => {
-		setSelectedSlide((selectedSlide + 1) % words.length)
+		if (randomize) {
+			setSelectedSlide(getRandomNumber(0, words.length - 1))
+		} else {
+			setSelectedSlide((selectedSlide + 1) % words.length)
+		}
 		sound.play()
 		setTimeRemaining(timer)
 	}

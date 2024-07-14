@@ -15,12 +15,13 @@ export const metadata: Metadata = {
 
 const CyclePage = ({ searchParams }: Props) => {
 	const timer = Number(searchParams.timer) || 15
+	const randomize = searchParams.randomize ? searchParams.randomize === 'true' : false
 
 	return (
 		<div className="h-svh w-screen overflow-hidden">
 			<NavBar />
 			<Background />
-			<SlideCycler timer={timer}/>
+			<SlideCycler timer={timer} randomize={randomize} />
 		</div>
 	)
 }
