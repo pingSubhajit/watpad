@@ -252,6 +252,11 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
+"@mantine/hooks@^7.11.2":
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/@mantine/hooks/-/hooks-7.11.2.tgz#5629dff7ae7253f94e819c26b3b1adf97e68fd48"
+  integrity sha512-jhyVe/sbDEG2U8rr2lMecUPgQxcfr5hh9HazqGfkS7ZRIMDO7uJ947yAcTMGGkp5Lxtt5TBFt1Cb6tiB2/1agg==
+
 "@next/env@15.0.0-rc.0":
   version "15.0.0-rc.0"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-15.0.0-rc.0.tgz#c772c9261dad10b1a1e72693c7dadfe2e35e6c5a"
@@ -2322,14 +2327,6 @@ next@15.0.0-rc.0:
     "@next/swc-win32-ia32-msvc" "15.0.0-rc.0"
     "@next/swc-win32-x64-msvc" "15.0.0-rc.0"
     sharp "^0.33.4"
-
-nextjs-toploader@^1.6.12:
-  version "1.6.12"
-  resolved "https://registry.yarnpkg.com/nextjs-toploader/-/nextjs-toploader-1.6.12.tgz#5b9f951e0de80450a23acd5101f4a311265c0d70"
-  integrity sha512-nbun5lvVjlKnxLQlahzZ55nELVEduqoEXT03KCHnsEYJnFpI/3BaIzpMyq/v8C7UGU2NfxQmjq6ldZ310rsDqA==
-  dependencies:
-    nprogress "^0.2.0"
-    prop-types "^15.8.1"
 
 normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
