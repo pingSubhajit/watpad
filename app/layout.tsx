@@ -1,12 +1,15 @@
 import type {Metadata} from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import {GlobalStateProvider} from '@/components/providers/GlobalStateProvider'
+import {GlobalStateProvider} from '@/components/providers/global-state-provider'
 import {ThemeProvider} from 'next-themes'
-import {BackgroundProvider} from '@/components/providers/BackgroundProvider'
+import {BackgroundProvider} from '@/components/providers/background-provider'
 import {defaultUrl, portfolio} from '@/lib/constants'
 import {Toaster} from '@/components/ui/sonner'
 import ProgressBarProvider from '@/components/providers/progress-bar-provider'
+import {AssistantModal} from '@/components/ui/assistant-ui/assistant-modal'
+import AiRuntimeProvider from '@/components/providers/ai-runtime-provider'
+import {AI} from '@/app/actions'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -50,11 +53,16 @@ export default function RootLayout({
 					>
 						<GlobalStateProvider>
 							<BackgroundProvider>
-								<div vaul-drawer-wrapper="" className="bg-background">
-									{children}
+								<AI>
+									<AiRuntimeProvider>
+										<div vaul-drawer-wrapper="" className="bg-background">
+											{children}
 
-									<Toaster />
-								</div>
+											<AssistantModal />
+											<Toaster/>
+										</div>
+									</AiRuntimeProvider>
+								</AI>
 							</BackgroundProvider>
 						</GlobalStateProvider>
 					</ThemeProvider>

@@ -1,7 +1,7 @@
 'use client'
 
 import SlideView from '@/components/SlideView'
-import {useWords} from '@/components/providers/GlobalStateProvider'
+import {useWords} from '@/components/providers/global-state-provider'
 import React, {useEffect, useState} from 'react'
 import {notFound} from 'next/navigation'
 import RemainingTime from '@/components/RemainingTime'

@@ -1,6 +1,6 @@
 'use client'
 
-import {useWords} from '@/components/providers/GlobalStateProvider'
+import {useWords} from '@/components/providers/global-state-provider'
 import React from 'react'
 import {useDropzone} from 'react-dropzone'
 import JSZip from 'jszip'
