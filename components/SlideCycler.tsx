@@ -64,7 +64,10 @@ const SlideCycler = ({timer=15, randomize=false}: {timer?: number, randomize?: b
 	return (
 		<>
 			<SlideView slideContent={words[selectedSlide]}/>
-			<RemainingTime time={timeRemaining} className="absolute z-10 bottom-8 right-8" />
+			<RemainingTime
+				time={timeRemaining}
+				className="absolute z-10 bottom-24 left-1/2 -translate-x-1/2 lg:bottom-8 lg:right-8 lg:left-auto lg:transform-none"
+			/>
 
 			<Button
 				variant="outline"
