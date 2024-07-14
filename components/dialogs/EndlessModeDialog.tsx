@@ -1,35 +1,41 @@
 'use client'
 
 import {useWords} from '@/components/providers/GlobalStateProvider'
-import {useEffect, useState} from 'react'
 import {DialogContent, DialogDescription, DialogHeader, DialogTitle} from '@/components/ui/dialog'
 import {Input} from '@/components/ui/input'
-import Link from 'next/link'
 import {Button} from '@/components/ui/button'
 import {Loader2} from 'lucide-react'
 import {fetchRandomWords} from '@/lib/data'
+import {z} from 'zod'
+import {useForm} from 'react-hook-form'
+import {zodResolver} from '@hookform/resolvers/zod'
+import {useRouter} from 'next/navigation'
+import {Form, FormControl, FormField, FormItem, FormMessage} from '@/components/ui/form'
+
+const formSchema = z.object({
+	timer: z.number().min(5).max(60),
+})
 
 const EndlessModeDialog = () => {
 	const {setWords} = useWords()
-	const [timer, setTimer] = useState(15)
-	const [loading, setLoading] = useState(true)
+	const router = useRouter()
 
-	const handleTimerChange = (timer: number) => {
-		setTimer(timer)
+	const form = useForm<z.infer<typeof formSchema>>({
+		resolver: zodResolver(formSchema),
+		defaultValues: {
+			timer: 15,
+		},
+	})
+
+	const onSubmit = async (values: z.infer<typeof formSchema>) => {
+		try {
+			const words = await fetchRandomWords(100)
+			setWords(words)
+			router.push(`/cycle?timer=${values.timer}`)
+		} catch (error) {
+			console.error(error)
+		}
 	}
-
-	useEffect(() => {
-		(async () => {
-			try {
-				const words = await fetchRandomWords(100)
-				setWords(words)
-				setLoading(false)
-				console.log(words)
-			} catch (error) {
-				console.error(error)
-			}
-		})()
-	}, [])
 
 	return (
 		<DialogContent>
@@ -46,18 +52,32 @@ const EndlessModeDialog = () => {
 				</DialogDescription>
 			</DialogHeader>
 
-			<div className="mt-4 flex items-stretch justify-between gap-2">
-				<Input
-					className="w-24" placeholder="Timer" type="number" value={timer}
-					onChange={event => handleTimerChange(Number(event.target.value))}
-				/>
-				<Link href={`/cycle?timer=${timer}`} className="w-full">
-					<Button size="sm" className="w-full border border-primary" disabled={loading}>
-						{loading && <Loader2 className="w-4 h-4 animate-spin mr-2" />}
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 flex items-stretch justify-between gap-2">
+					<FormField
+						control={form.control}
+						name="timer"
+						render={({field}) => (
+							<FormItem>
+								<FormControl>
+									<Input className="w-24" placeholder="Timer" type="number" {...field} />
+								</FormControl>
+								<FormMessage/>
+							</FormItem>
+						)}
+					/>
+					<Button
+						size="sm"
+						type="submit"
+						className="w-full border border-primary"
+						disabled={form.formState.isSubmitting || !form.formState.isValid}
+						autoFocus={true}
+					>
+						{form.formState.isSubmitting && <Loader2 className="w-4 h-4 animate-spin mr-2"/>}
 						Start practice
 					</Button>
-				</Link>
-			</div>
+				</form>
+			</Form>
 		</DialogContent>
 	)
 }
