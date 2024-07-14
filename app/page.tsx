@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import {Button} from '@/components/ui/button'
-import {Dialog, DialogTrigger} from '@/components/ui/dialog'
 import PPTUploaderDialog from '@/components/dialogs/PPTUploaderDialog'
 import {Cookie, Info, Scale} from 'lucide-react'
 import Link from 'next/link'
 import {Metadata} from 'next'
 import EndlessModeDialog from '@/components/dialogs/EndlessModeDialog'
+import {Credenza, CredenzaTrigger} from '@/components/ui/credenza'
 
 export const metadata: Metadata = {
 	title: 'Watpad - Word Association Test Practice',
@@ -33,22 +33,22 @@ export default function Home() {
 				</ol>
 
 				<div className="flex gap-4 items-center flex-col sm:flex-row">
-					<Dialog>
-						<DialogTrigger asChild>
+					<Credenza>
+						<CredenzaTrigger asChild>
 							<Button className="rounded-full" size="lg">
                                 Endless mode
 							</Button>
-						</DialogTrigger>
+						</CredenzaTrigger>
 						<EndlessModeDialog />
-					</Dialog>
-					<Dialog>
-						<DialogTrigger asChild>
+					</Credenza>
+					<Credenza>
+						<CredenzaTrigger asChild>
 							<Button variant="outline" className="rounded-full" size="lg">
 								Upload .ppt file
 							</Button>
-						</DialogTrigger>
+						</CredenzaTrigger>
 						<PPTUploaderDialog />
-					</Dialog>
+					</Credenza>
 				</div>
 			</main>
 			<footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
