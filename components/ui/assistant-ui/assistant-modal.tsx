@@ -27,7 +27,7 @@ export const AssistantModal: FC = () => {
 			</PopoverAnchor>
 			<PopoverContent
 				sideOffset={16}
-				className="z-50 h-[650px] lg:h-[800px] w-[600px] max-w-[90vw] lg:ml-8 overflow-clip rounded-xl p-0"
+				className="z-50 h-[650px] lg:h-[800px] lg:max-h-[80vh] w-[600px] max-w-[90vw] lg:ml-8 overflow-clip rounded-xl p-0"
 			>
 				<AiThread />
 			</PopoverContent>
