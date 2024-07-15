@@ -20,7 +20,7 @@ import {toast} from 'sonner'
 import {useRouter} from 'next-nprogress-bar'
 
 const formSchema = z.object({
-	timer: z.number().min(5).max(60),
+	timer: z.coerce.number().min(5).max(60),
 })
 
 const EndlessModeDialog = () => {
@@ -78,7 +78,7 @@ const EndlessModeDialog = () => {
 							size="sm"
 							type="submit"
 							className="w-full border border-primary"
-							disabled={form.formState.isSubmitting || !form.formState.isValid}
+							disabled={form.formState.isSubmitting}
 							autoFocus={true}
 						>
 							{form.formState.isSubmitting && <Loader2 className="w-4 h-4 animate-spin mr-2"/>}
