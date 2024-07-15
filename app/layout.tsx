@@ -6,6 +6,7 @@ import {ThemeProvider} from 'next-themes'
 import {defaultUrl, portfolio} from '@/lib/constants'
 import {Toaster} from '@/components/ui/sonner'
 import ProgressBarProvider from '@/components/providers/progress-bar-provider'
+import WatpadPostHogProvider from '@/components/providers/posthog-provider'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -40,22 +41,24 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`${geistSans.variable} ${geistMono.variable}`}>
-				<ProgressBarProvider>
-					<ThemeProvider
-						attribute="class"
-						defaultTheme="dark"
-						disableTransitionOnChange
-					>
-						<GlobalStateProvider>
-							<div vaul-drawer-wrapper="" className="bg-background">
-								{children}
-								<Toaster/>
-							</div>
-						</GlobalStateProvider>
-					</ThemeProvider>
-				</ProgressBarProvider>
-			</body>
+			<WatpadPostHogProvider>
+				<body className={`${geistSans.variable} ${geistMono.variable}`}>
+					<ProgressBarProvider>
+						<ThemeProvider
+							attribute="class"
+							defaultTheme="dark"
+							disableTransitionOnChange
+						>
+							<GlobalStateProvider>
+								<div vaul-drawer-wrapper="" className="bg-background">
+									{children}
+									<Toaster/>
+								</div>
+							</GlobalStateProvider>
+						</ThemeProvider>
+					</ProgressBarProvider>
+				</body>
+			</WatpadPostHogProvider>
 		</html>
 	)
 }
