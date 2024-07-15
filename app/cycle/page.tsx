@@ -1,5 +1,4 @@
 import SlideCycler from '@/components/SlideCycler'
-import Background from '@/components/Background'
 import NavBar from '@/components/NavBar'
 import {Metadata} from 'next'
 
@@ -20,7 +19,6 @@ const CyclePage = ({ searchParams }: Props) => {
 	return (
 		<div className="h-svh w-screen overflow-hidden">
 			<NavBar />
-			<Background />
 			<SlideCycler timer={timer} randomize={randomize} />
 		</div>
 	)

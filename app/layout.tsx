@@ -3,7 +3,6 @@ import localFont from 'next/font/local'
 import './globals.css'
 import {GlobalStateProvider} from '@/components/providers/global-state-provider'
 import {ThemeProvider} from 'next-themes'
-import {BackgroundProvider} from '@/components/providers/background-provider'
 import {defaultUrl, portfolio} from '@/lib/constants'
 import {Toaster} from '@/components/ui/sonner'
 import ProgressBarProvider from '@/components/providers/progress-bar-provider'
@@ -49,12 +48,10 @@ export default function RootLayout({
 						disableTransitionOnChange
 					>
 						<GlobalStateProvider>
-							<BackgroundProvider>
-								<div vaul-drawer-wrapper="" className="bg-background">
-									{children}
-									<Toaster/>
-								</div>
-							</BackgroundProvider>
+							<div vaul-drawer-wrapper="" className="bg-background">
+								{children}
+								<Toaster/>
+							</div>
 						</GlobalStateProvider>
 					</ThemeProvider>
 				</ProgressBarProvider>
