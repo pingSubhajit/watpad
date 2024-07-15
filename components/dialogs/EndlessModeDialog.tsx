@@ -23,6 +23,7 @@ import {useRouter} from 'next-nprogress-bar'
 import Kbd from '@/components/ui/kbd'
 import {useState} from 'react'
 import {useHotkeys} from '@mantine/hooks'
+import posthog from 'posthog-js'
 
 const formSchema = z.object({
 	timer: z.coerce.number().min(5).max(60),
@@ -44,6 +45,7 @@ const EndlessModeDialog = () => {
 		try {
 			const words = await fetchRandomWords(100)
 			setWords(words)
+			posthog.capture('user_started_practice', {type: 'endless_mode', timer: values.timer})
 			router.push(`/cycle?timer=${values.timer}`)
 		} catch (error) {
 			toast.error('Failed to start practice. Please try again later.')

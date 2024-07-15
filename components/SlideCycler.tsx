@@ -10,6 +10,7 @@ import {Button} from '@/components/ui/button'
 import Kbd from '@/components/ui/kbd'
 import {useHotkeys} from '@mantine/hooks'
 import {getRandomNumber} from '@/lib/utils'
+import posthog from 'posthog-js'
 
 const SlideCycler = ({timer=15, randomize=false}: {timer?: number, randomize?: boolean}) => {
 	const {words} = useWords()
@@ -48,6 +49,7 @@ const SlideCycler = ({timer=15, randomize=false}: {timer?: number, randomize?: b
 	}, [timeRemaining])
 
 	const nextSlide = () => {
+		posthog.capture('user_skipped_slide', {word: words[selectedSlide]})
 		if (randomize) {
 			setSelectedSlide(getRandomNumber(0, words.length - 1))
 		} else {

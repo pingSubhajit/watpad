@@ -3,7 +3,6 @@
 import SlidesUploader from '@/components/SlidesUploader'
 import {useWords} from '@/components/providers/global-state-provider'
 import {Button} from '@/components/ui/button'
-import Link from 'next/link'
 import {Input} from '@/components/ui/input'
 import {useState} from 'react'
 import {
@@ -18,9 +17,12 @@ import {
 import {Switch} from '@/components/ui/switch'
 import Kbd from '@/components/ui/kbd'
 import {useHotkeys} from '@mantine/hooks'
+import {useRouter} from 'next-nprogress-bar'
+import posthog from 'posthog-js'
 
 const PPTUploaderDialog = () => {
 	const [open, setOpen] = useState(false)
+	const router = useRouter()
 	const {words} = useWords()
 	const [timer, setTimer] = useState(15)
 	const [randomize, setRandomize] = useState(false)
@@ -32,6 +34,11 @@ const PPTUploaderDialog = () => {
 	useHotkeys([
 		['p', () => setOpen(true)]
 	])
+
+	const onStartPractice = () => {
+		posthog.capture('user_started_practice', {type: 'uploaded_ppt', words: words.length, randomize, timer})
+		router.push(`/cycle?timer=${timer}&randomize=${randomize}`)
+	}
 
 	return (
 		<Credenza open={open} onOpenChange={setOpen}>
@@ -70,14 +77,9 @@ const PPTUploaderDialog = () => {
 									className="w-24" placeholder="Timer" type="number" value={timer}
 									onChange={event => handleTimerChange(Number(event.target.value))}
 								/>
-								<Link
-									href={{
-										pathname: '/cycle',
-										query: {timer, randomize}
-									}}
-									className="w-full">
-									<Button size="sm" className="w-full border border-primary">Start practice</Button>
-								</Link>
+								<Button size="sm" className="w-full border border-primary" onClick={onStartPractice}>
+									Start practice
+								</Button>
 							</div>
 						</div>
 					)}

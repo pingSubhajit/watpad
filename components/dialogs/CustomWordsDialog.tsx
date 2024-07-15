@@ -25,6 +25,7 @@ import {Switch} from '@/components/ui/switch'
 import {useState} from 'react'
 import Kbd from '@/components/ui/kbd'
 import {useHotkeys} from '@mantine/hooks'
+import posthog from 'posthog-js'
 
 const formSchema = z.object({
 	input: z.string().min(1, 'Please enter some words to get started'),
@@ -49,6 +50,7 @@ const CustomWordsDialog = () => {
 		try {
 			const words = await parseWordsFromInput(values.input)
 			setWords(words)
+			posthog.capture('user_started_practice', {type: 'custom_words', words: words.length, timer: values.timer})
 			router.push(`/cycle?timer=${values.timer}&randomize=${randomize}`)
 		} catch (error) {
 			toast.error('Failed to start practice. Please try again later.')
