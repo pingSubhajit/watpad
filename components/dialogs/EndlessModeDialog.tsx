@@ -10,20 +10,26 @@ import {useForm} from 'react-hook-form'
 import {zodResolver} from '@hookform/resolvers/zod'
 import {Form, FormControl, FormField, FormItem, FormMessage} from '@/components/ui/form'
 import {
+	Credenza,
 	CredenzaBody,
 	CredenzaContent,
 	CredenzaDescription,
 	CredenzaHeader,
-	CredenzaTitle
+	CredenzaTitle,
+	CredenzaTrigger
 } from '@/components/ui/credenza'
 import {toast} from 'sonner'
 import {useRouter} from 'next-nprogress-bar'
+import Kbd from '@/components/ui/kbd'
+import {useState} from 'react'
+import {useHotkeys} from '@mantine/hooks'
 
 const formSchema = z.object({
 	timer: z.coerce.number().min(5).max(60),
 })
 
 const EndlessModeDialog = () => {
+	const [open, setOpen] = useState(false)
 	const {setWords} = useWords()
 	const router = useRouter()
 
@@ -44,50 +50,62 @@ const EndlessModeDialog = () => {
 		}
 	}
 
+	useHotkeys([
+		['e', () => setOpen(true)]
+	])
+
 	return (
-		<CredenzaContent>
-			<CredenzaHeader>
-				<CredenzaTitle>Start endless mode</CredenzaTitle>
-				<CredenzaDescription>
+		<Credenza open={open} onOpenChange={setOpen}>
+			<CredenzaTrigger asChild>
+				<Button className="rounded-full" size="lg">
+					Endless mode
+					<Kbd className="dark:border-neutral-400 dark:bg-neutral-300 text-xs ml-3">E</Kbd>
+				</Button>
+			</CredenzaTrigger>
+			<CredenzaContent>
+				<CredenzaHeader>
+					<CredenzaTitle>Start endless mode</CredenzaTitle>
+					<CredenzaDescription>
 					You will be presented with a random word every given interval. You have to write down a sentence
 					using that word. This will continue until you stop the practice.
-				</CredenzaDescription>
+					</CredenzaDescription>
 
-				<CredenzaDescription>
+					<CredenzaDescription>
 					Please note that this feature is still in development and occasionally present a word that might be
 					too esoteric or obscure. In those cases, you can skip the word and move on to the next one.
-				</CredenzaDescription>
-			</CredenzaHeader>
+					</CredenzaDescription>
+				</CredenzaHeader>
 
-			<CredenzaBody>
-				<Form {...form}>
-					<form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 flex items-stretch justify-between gap-2">
-						<FormField
-							control={form.control}
-							name="timer"
-							render={({field}) => (
-								<FormItem>
-									<FormControl>
-										<Input className="w-24" placeholder="Timer" type="number" {...field} />
-									</FormControl>
-									<FormMessage/>
-								</FormItem>
-							)}
-						/>
-						<Button
-							size="sm"
-							type="submit"
-							className="w-full border border-primary"
-							disabled={form.formState.isSubmitting}
-							autoFocus={true}
-						>
-							{form.formState.isSubmitting && <Loader2 className="w-4 h-4 animate-spin mr-2"/>}
+				<CredenzaBody>
+					<Form {...form}>
+						<form onSubmit={form.handleSubmit(onSubmit)} className="mt-4 flex items-stretch justify-between gap-2">
+							<FormField
+								control={form.control}
+								name="timer"
+								render={({field}) => (
+									<FormItem>
+										<FormControl>
+											<Input className="w-24" placeholder="Timer" type="number" {...field} />
+										</FormControl>
+										<FormMessage/>
+									</FormItem>
+								)}
+							/>
+							<Button
+								size="sm"
+								type="submit"
+								className="w-full border border-primary"
+								disabled={form.formState.isSubmitting}
+								autoFocus={true}
+							>
+								{form.formState.isSubmitting && <Loader2 className="w-4 h-4 animate-spin mr-2"/>}
 							Start practice
-						</Button>
-					</form>
-				</Form>
-			</CredenzaBody>
-		</CredenzaContent>
+							</Button>
+						</form>
+					</Form>
+				</CredenzaBody>
+			</CredenzaContent>
+		</Credenza>
 	)
 }
 

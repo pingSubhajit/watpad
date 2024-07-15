@@ -7,15 +7,20 @@ import Link from 'next/link'
 import {Input} from '@/components/ui/input'
 import {useState} from 'react'
 import {
+	Credenza,
 	CredenzaBody,
 	CredenzaContent,
 	CredenzaDescription,
 	CredenzaHeader,
-	CredenzaTitle
+	CredenzaTitle,
+	CredenzaTrigger
 } from '@/components/ui/credenza'
 import {Switch} from '@/components/ui/switch'
+import Kbd from '@/components/ui/kbd'
+import {useHotkeys} from '@mantine/hooks'
 
 const PPTUploaderDialog = () => {
+	const [open, setOpen] = useState(false)
 	const {words} = useWords()
 	const [timer, setTimer] = useState(15)
 	const [randomize, setRandomize] = useState(false)
@@ -24,49 +29,61 @@ const PPTUploaderDialog = () => {
 		setTimer(timer)
 	}
 
+	useHotkeys([
+		['p', () => setOpen(true)]
+	])
+
 	return (
-		<CredenzaContent>
-			<CredenzaHeader>
-				<CredenzaTitle>Upload a presentation file</CredenzaTitle>
-				<CredenzaDescription>
+		<Credenza open={open} onOpenChange={setOpen}>
+			<CredenzaTrigger asChild>
+				<Button variant="outline" className="rounded-full" size="lg">
+					Upload .ppt file
+					<Kbd className="text-xs ml-3">P</Kbd>
+				</Button>
+			</CredenzaTrigger>
+			<CredenzaContent>
+				<CredenzaHeader>
+					<CredenzaTitle>Upload a presentation file</CredenzaTitle>
+					<CredenzaDescription>
 					For best result, use a presentation file that has only one word per slide and no additional content.
 					AI features are not implemented yet and it might be difficult for the app to extract words from
 					complex slides.
-				</CredenzaDescription>
-			</CredenzaHeader>
+					</CredenzaDescription>
+				</CredenzaHeader>
 
-			<CredenzaBody>
-				<SlidesUploader className="mt-4" />
+				<CredenzaBody>
+					<SlidesUploader className="mt-4" />
 
-				{words.length > 0 && (
-					<div className="mt-4">
-						<p className="text-sm text-muted-foreground">
-							<span className="text-primary">{words.length}</span> words found in the presentation file.
-						</p>
+					{words.length > 0 && (
+						<div className="mt-4">
+							<p className="text-sm text-muted-foreground">
+								<span className="text-primary">{words.length}</span> words found in the presentation file.
+							</p>
 
-						<div className="mt-2 flex justify-between items-center">
-							<span className="text-sm text-muted-foreground">Randomize slides</span>
-							<Switch checked={randomize} onCheckedChange={checked => setRandomize(checked)} />
+							<div className="mt-2 flex justify-between items-center">
+								<span className="text-sm text-muted-foreground">Randomize slides</span>
+								<Switch checked={randomize} onCheckedChange={checked => setRandomize(checked)} />
+							</div>
+
+							<div className="mt-3 flex items-stretch justify-between gap-2">
+								<Input
+									className="w-24" placeholder="Timer" type="number" value={timer}
+									onChange={event => handleTimerChange(Number(event.target.value))}
+								/>
+								<Link
+									href={{
+										pathname: '/cycle',
+										query: {timer, randomize}
+									}}
+									className="w-full">
+									<Button size="sm" className="w-full border border-primary">Start practice</Button>
+								</Link>
+							</div>
 						</div>
-
-						<div className="mt-3 flex items-stretch justify-between gap-2">
-							<Input
-								className="w-24" placeholder="Timer" type="number" value={timer}
-								onChange={event => handleTimerChange(Number(event.target.value))}
-							/>
-							<Link
-								href={{
-									pathname: '/cycle',
-									query: {timer, randomize}
-								}}
-								className="w-full">
-								<Button size="sm" className="w-full border border-primary">Start practice</Button>
-							</Link>
-						</div>
-					</div>
-				)}
-			</CredenzaBody>
-		</CredenzaContent>
+					)}
+				</CredenzaBody>
+			</CredenzaContent>
+		</Credenza>
 	)
 }
 

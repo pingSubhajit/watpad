@@ -1,11 +1,9 @@
 import Image from 'next/image'
-import {Button} from '@/components/ui/button'
 import PPTUploaderDialog from '@/components/dialogs/PPTUploaderDialog'
 import {Cookie, Info, Scale} from 'lucide-react'
 import Link from 'next/link'
 import {Metadata} from 'next'
 import EndlessModeDialog from '@/components/dialogs/EndlessModeDialog'
-import {Credenza, CredenzaTrigger} from '@/components/ui/credenza'
 import {AssistantModal} from '@/components/ui/assistant-ui/assistant-modal'
 import Pill from '@/components/Pill'
 import CustomWordsDialog from '@/components/dialogs/CustomWordsDialog'
@@ -38,32 +36,11 @@ export default function Home() {
 
 				<div>
 					<div className="flex gap-4 items-center flex-col sm:flex-row">
-						<Credenza>
-							<CredenzaTrigger asChild>
-								<Button className="rounded-full" size="lg">
-									Endless mode
-								</Button>
-							</CredenzaTrigger>
-							<EndlessModeDialog />
-						</Credenza>
-						<Credenza>
-							<CredenzaTrigger asChild>
-								<Button variant="outline" className="rounded-full" size="lg">
-									Upload .ppt file
-								</Button>
-							</CredenzaTrigger>
-							<PPTUploaderDialog />
-						</Credenza>
+						<EndlessModeDialog />
+						<PPTUploaderDialog />
 					</div>
 
-					<Credenza>
-						<CredenzaTrigger asChild>
-							<Button variant="outline" className="rounded-full w-full mt-4" size="lg">
-								Practice with your own words
-							</Button>
-						</CredenzaTrigger>
-						<CustomWordsDialog />
-					</Credenza>
+					<CustomWordsDialog />
 				</div>
 
 				<AssistantModal/>
