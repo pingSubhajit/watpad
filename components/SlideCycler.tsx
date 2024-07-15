@@ -74,7 +74,7 @@ const SlideCycler = ({timer=15, randomize=false}: {timer?: number, randomize?: b
 				onClick={nextSlide}
 				className="absolute z-10 bottom-8 left-1/2 -translate-x-1/2 p-4 rounded-full w-96 text-primary/80"
 			>
-				Skip word and go to next
+				Skip this and go to the next word
 				<Kbd className="ml-6">Space</Kbd>
 			</Button>
 		</>
