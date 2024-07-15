@@ -8,6 +8,7 @@ import EndlessModeDialog from '@/components/dialogs/EndlessModeDialog'
 import {Credenza, CredenzaTrigger} from '@/components/ui/credenza'
 import {AssistantModal} from '@/components/ui/assistant-ui/assistant-modal'
 import Pill from '@/components/Pill'
+import CustomWordsDialog from '@/components/dialogs/CustomWordsDialog'
 
 export const metadata: Metadata = {
 	title: 'Watpad - Word Association Test Practice',
@@ -35,41 +36,52 @@ export default function Home() {
 					<li>Set your timer and start</li>
 				</ol>
 
-				<div className="flex gap-4 items-center flex-col sm:flex-row">
+				<div>
+					<div className="flex gap-4 items-center flex-col sm:flex-row">
+						<Credenza>
+							<CredenzaTrigger asChild>
+								<Button className="rounded-full" size="lg">
+									Endless mode
+								</Button>
+							</CredenzaTrigger>
+							<EndlessModeDialog />
+						</Credenza>
+						<Credenza>
+							<CredenzaTrigger asChild>
+								<Button variant="outline" className="rounded-full" size="lg">
+									Upload .ppt file
+								</Button>
+							</CredenzaTrigger>
+							<PPTUploaderDialog />
+						</Credenza>
+					</div>
+
 					<Credenza>
 						<CredenzaTrigger asChild>
-							<Button className="rounded-full" size="lg">
-                                Endless mode
+							<Button variant="outline" className="rounded-full w-full mt-4" size="lg">
+								Practice with your own words
 							</Button>
 						</CredenzaTrigger>
-						<EndlessModeDialog />
-					</Credenza>
-					<Credenza>
-						<CredenzaTrigger asChild>
-							<Button variant="outline" className="rounded-full" size="lg">
-								Upload .ppt file
-							</Button>
-						</CredenzaTrigger>
-						<PPTUploaderDialog />
+						<CustomWordsDialog />
 					</Credenza>
 				</div>
 
-				<AssistantModal />
+				<AssistantModal/>
 			</main>
 			<footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
 				<Link
 					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
 					href="/about"
 				>
-					<Info className="w-4 h-4 stroke-primary/50" />
-                    About
+					<Info className="w-4 h-4 stroke-primary/50"/>
+					About
 				</Link>
 				<Link
 					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
 					href="/privacy"
 				>
-					<Cookie className="w-4 h-4 stroke-primary/50" />
-                    Privacy
+					<Cookie className="w-4 h-4 stroke-primary/50"/>
+					Privacy
 				</Link>
 				<Link
 					className="flex items-center gap-2 hover:underline hover:underline-offset-4"
