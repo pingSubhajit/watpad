@@ -68,7 +68,7 @@ const AboutPage = () => {
 			<Separator/>
 
 			<footer className="flex justify-between items-center w-full">
-				<p className="mt-2 text-sm font-medium text-neutral-400 italic">v0.02</p>
+				<p className="mt-2 text-sm font-medium text-neutral-400 italic">v0.03</p>
 				<a href={portfolio} target="_blank" className="text-cyan-300 hover:text-cyan-400 transition">
 					<p className="mt-2 text-sm font-medium text-right">Subhajit</p>
 				</a>
