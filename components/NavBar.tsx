@@ -6,7 +6,7 @@ import {ChevronLeft} from 'lucide-react'
 const NavBar = () => {
 	return (
 		<nav className={cn(
-			'absolute top-4 left-4 ',
+			'absolute top-4 left-4 z-10',
 		)}>
 			<Link href="/">
 				<Button variant="outline" size="icon" className="rounded-full">

@@ -9,6 +9,7 @@ import useChatScroll from '@/hooks/use-chat-scroll'
 import {Button} from '@/components/ui/button'
 import {Loader2, Send} from 'lucide-react'
 import {AnimatePresence, motion} from 'framer-motion'
+import {defaultTextTransition, letterAnimation} from '@/lib/animations'
 
 const AiThread = () => {
 	const {messages, input, handleInputChange, handleSubmit, isLoading} = useChat({
@@ -24,7 +25,7 @@ const AiThread = () => {
 				{messages.map(message => <div key={message.id} className={cn(
 					'flex [&>div]:py-2',
 					message.role === 'user'
-						? 'justify-end [&>div]:text-right [&>div]:bg-secondary [&>div]:rounded-full [&>div]:px-4'
+						? 'justify-end [&>div]:text-right [&>div]:bg-secondary [&>div]:rounded-xl [&>div]:px-4'
 						: 'justify-start',
 				)}>
 					{message.role !== 'user' && <Avatar className="w-8 h-8 mr-2 border rounded-md">
@@ -33,7 +34,16 @@ const AiThread = () => {
 					</Avatar>}
 					<div className="max-w-[80%]">
 						{message.role === 'user' && message.content}
-						{message.role !== 'user' && <MarkdownText content={message.content} />}
+						{message.role !== 'user' && <AnimatePresence>
+						    <motion.div
+						        variants={letterAnimation}
+						        animate="animate"
+						        exit="exit"
+						        transition={defaultTextTransition}
+						    >
+						        <MarkdownText content={message.content}/>
+						    </motion.div>
+						</AnimatePresence>}
 					</div>
 				</div>)}
 			</div>
