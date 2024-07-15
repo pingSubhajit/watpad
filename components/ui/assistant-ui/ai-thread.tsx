@@ -19,9 +19,9 @@ const AiThread = () => {
 	const ref = useChatScroll(messages)
 
 	return (
-		<div className="p-4 pt-0 h-full flex flex-col justify-end">
-			{messages.length === 0 && <AiThreadEmpty />}
-			<div className="text-primary/80 pt-8 space-y-2 overflow-y-auto custom-scroll" ref={ref}>
+		<div className="pt-0 h-full flex flex-col justify-end">
+			<div className="text-primary/80 pt-8 space-y-2 overflow-y-auto custom-scroll p-4" ref={ref}>
+				<AiThreadWelcome />
 				{messages.map(message => <div key={message.id} className={cn(
 					'flex [&>div]:py-2',
 					message.role === 'user'
@@ -48,7 +48,7 @@ const AiThread = () => {
 				</div>)}
 			</div>
 
-			<form onSubmit={handleSubmit} className="mt-4">
+			<form onSubmit={handleSubmit} className="p-4">
 				<div className="flex items-center w-full gap-2">
 					<Input
 						value={input}
@@ -80,9 +80,9 @@ const AiThread = () => {
 
 export default AiThread
 
-const AiThreadEmpty = () => {
+const AiThreadWelcome = () => {
 	return (
-		<div className="flex flex-grow basis-full flex-col items-center justify-center h-full">
+		<div className="flex flex-grow basis-full flex-col items-center justify-center mb-24">
 			<Avatar className="w-16 h-16 border rounded-md">
 				<AvatarImage src="/logo.png"/>
 				<AvatarFallback>WP</AvatarFallback>
