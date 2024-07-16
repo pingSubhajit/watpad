@@ -4,7 +4,7 @@ import SlidesUploader from '@/components/SlidesUploader'
 import {useWords} from '@/components/providers/global-state-provider'
 import {Button} from '@/components/ui/button'
 import {Input} from '@/components/ui/input'
-import {useState} from 'react'
+import {useCallback, useEffect, useState} from 'react'
 import {
 	Credenza,
 	CredenzaBody,
@@ -23,9 +23,19 @@ import posthog from 'posthog-js'
 const PPTUploaderDialog = () => {
 	const [open, setOpen] = useState(false)
 	const router = useRouter()
-	const {words} = useWords()
+	const {words, setWords} = useWords()
 	const [timer, setTimer] = useState(15)
 	const [randomize, setRandomize] = useState(false)
+
+	const resetWords = useCallback(() => {
+		setWords([])
+	}, [])
+
+	useEffect(() => {
+		if (open) {
+			resetWords()
+		}
+	}, [open])
 
 	const handleTimerChange = (timer: number) => {
 		setTimer(timer)
