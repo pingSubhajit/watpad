@@ -21,7 +21,7 @@ const TermsPage = () => {
 				</Link>
 			</header>
 
-			<div className="prose lg:prose-xl prose-neutral prose-invert">
+			<div className="prose lg:prose-xl prose-neutral dark:prose-invert">
 				<h1 id="terms-of-use">Terms of Use</h1>
 				<p><strong>Effective Date:</strong> July 14, 2024</p>
 				<h2 id="1-introduction">1. Introduction</h2>

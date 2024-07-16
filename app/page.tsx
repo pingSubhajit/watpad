@@ -20,7 +20,7 @@ export default function Home() {
 			<main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
 				<Pill href="/about" title="Introducing AI" />
 				<Image
-					className=""
+					className="invert dark:invert-0"
 					src="/logo.svg"
 					alt="Watpad logo"
 					width={180}

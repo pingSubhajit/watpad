@@ -61,7 +61,10 @@ const EndlessModeDialog = () => {
 			<CredenzaTrigger asChild>
 				<Button className="rounded-full" size="lg">
 					Endless mode
-					<Kbd className="dark:border-neutral-400 dark:bg-neutral-300 text-xs ml-3">E</Kbd>
+					<Kbd
+						className="border-neutral-700 dark:border-neutral-400
+						bg-neutral-800 dark:bg-neutral-300 text-xs ml-3"
+					>E</Kbd>
 				</Button>
 			</CredenzaTrigger>
 			<CredenzaContent>
