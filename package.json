@@ -22,6 +22,7 @@
     "@radix-ui/react-switch": "^1.1.0",
     "@radix-ui/react-tooltip": "^1.1.2",
     "@types/howler": "^2.2.11",
+    "@vercel/speed-insights": "^1.0.12",
     "ai": "^3.2.22",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",

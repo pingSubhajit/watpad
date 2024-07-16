@@ -7,6 +7,7 @@ import {defaultUrl, portfolio} from '@/lib/constants'
 import {Toaster} from '@/components/ui/sonner'
 import ProgressBarProvider from '@/components/providers/progress-bar-provider'
 import WatpadPostHogProvider from '@/components/providers/posthog-provider'
+import {SpeedInsights} from '@vercel/speed-insights/next'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -53,6 +54,7 @@ export default function RootLayout({
 								<div vaul-drawer-wrapper="" className="bg-background">
 									{children}
 									<Toaster/>
+									<SpeedInsights/>
 								</div>
 							</GlobalStateProvider>
 						</ThemeProvider>
