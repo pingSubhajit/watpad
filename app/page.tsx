@@ -29,7 +29,7 @@ export default function Home() {
 				/>
 				<ol className="font-mono list-inside list-decimal text-sm text-center sm:text-left">
 					<li className="mb-2">
-                        Get started by Uploading a .ppt file.
+                        Get started selecting a mode
 					</li>
 					<li>Set your timer and start</li>
 				</ol>
