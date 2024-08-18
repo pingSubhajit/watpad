@@ -19,16 +19,39 @@ The words can also be repeated, including duplicate words, similar words, or any
 `
 
 export const parseWordsFromInput = async (input: string): Promise<string[]> => {
-	const result = await generateObject({
-		model: google('models/gemini-1.5-flash-latest'),
-		system: systemPrompt,
-		prompt: input,
-		schema: z.object({
-			words: z.array(z.object({
-				word: z.string().describe('One single word from the input string')
-			})).describe('An array of words parsed from the input string')
-		})
-	})
+	const models = [
+		google('models/gemini-1.0-pro-latest'),
+		google('models/gemini-1.5-flash-latest'),
+		google('models/gemini-1.5-pro-latest')
+	]
 
-	return result.object.words.map(word => word.word)
+	let errors: Error[] = []
+	let result: string[]
+
+	for (let model of models) {
+		try {
+			const parsedResult = await generateObject({
+				model,
+				system: systemPrompt,
+				prompt: input,
+				schema: z.object({
+					words: z.array(z.object({
+						word: z.string().describe('One single word from the input string')
+					})).describe('An array of words parsed from the input string')
+				})
+			})
+
+			result = parsedResult.object.words.map(word => word.word)
+			break
+		} catch (error) {
+			errors.push(error as Error)
+		}
+	}
+
+	// @ts-ignore
+	if (result) {
+		return result
+	} else {
+		throw new Error('Failed to parse words from the input string')
+	}
 }
