@@ -69,7 +69,12 @@ const AboutPage = () => {
 
 			<footer className="flex justify-between items-center w-full">
 				<p className="mt-2 text-sm font-medium text-muted-foreground italic">v0.03</p>
-				<a href={portfolio} target="_blank" className="text-cyan-500 dark:text-cyan-300 hover:text-cyan-400 transition">
+
+				<a
+					href={portfolio}
+					target="_blank"
+					className="text-cyan-500 dark:text-cyan-300 hover:text-cyan-400 transition"
+				>
 					<p className="mt-2 text-sm font-medium text-right">Subhajit</p>
 				</a>
 			</footer>

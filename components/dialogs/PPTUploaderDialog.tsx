@@ -19,6 +19,7 @@ import Kbd from '@/components/ui/kbd'
 import {useHotkeys} from '@mantine/hooks'
 import {useRouter} from 'next-nprogress-bar'
 import posthog from 'posthog-js'
+import {useUser} from 'rioko'
 
 const PPTUploaderDialog = () => {
 	const [open, setOpen] = useState(false)
@@ -26,6 +27,7 @@ const PPTUploaderDialog = () => {
 	const {words, setWords} = useWords()
 	const [timer, setTimer] = useState(15)
 	const [randomize, setRandomize] = useState(false)
+	const {setMetadata, user} = useUser()
 
 	const resetWords = useCallback(() => {
 		setWords([])
@@ -46,6 +48,7 @@ const PPTUploaderDialog = () => {
 	])
 
 	const onStartPractice = () => {
+		setMetadata({...user.meta, practiced: typeof user.meta?.practiced === 'number' ? user.meta.practiced + 1 : 1})
 		posthog.capture('user_started_practice', {type: 'uploaded_ppt', words: words.length, randomize, timer})
 		router.push(`/cycle?timer=${timer}&randomize=${randomize}`)
 	}

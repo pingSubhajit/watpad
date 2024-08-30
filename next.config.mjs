@@ -1,4 +1,15 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+import {loadConfig} from 'rioko'
 
-export default nextConfig;
+
+const config = async () => {
+	const config = await loadConfig()
+
+	return {
+		env: {
+			RIOKO_CONFIG: config
+		}
+	}
+}
+
+export default config()

@@ -1,4 +1,3 @@
-// app/providers.js
 'use client'
 
 import posthog from 'posthog-js'

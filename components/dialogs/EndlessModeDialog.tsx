@@ -24,10 +24,28 @@ import Kbd from '@/components/ui/kbd'
 import {useState} from 'react'
 import {useHotkeys} from '@mantine/hooks'
 import posthog from 'posthog-js'
+import {withFeaturePopper} from 'rioko'
+import GuideEndlessMode from '@/components/guides/GuideEndlessMode'
 
 const formSchema = z.object({
 	timer: z.coerce.number().min(5).max(60),
 })
+
+const EndlessModeButton = withFeaturePopper(
+	(props) => (
+		<CredenzaTrigger asChild>
+			<Button className="rounded-full" size="lg" {...props}>
+				Endless mode
+				<Kbd
+					className="border-neutral-700 dark:border-neutral-400
+					bg-neutral-800 dark:bg-neutral-300 text-xs ml-3"
+				>E</Kbd>
+			</Button>
+		</CredenzaTrigger>
+	),
+	'FEAT_WT102_ENDLESS_MODE',
+	GuideEndlessMode
+)
 
 const EndlessModeDialog = () => {
 	const [open, setOpen] = useState(false)
@@ -58,15 +76,8 @@ const EndlessModeDialog = () => {
 
 	return (
 		<Credenza open={open} onOpenChange={setOpen}>
-			<CredenzaTrigger asChild>
-				<Button className="rounded-full" size="lg">
-					Endless mode
-					<Kbd
-						className="border-neutral-700 dark:border-neutral-400
-						bg-neutral-800 dark:bg-neutral-300 text-xs ml-3"
-					>E</Kbd>
-				</Button>
-			</CredenzaTrigger>
+			<EndlessModeButton />
+
 			<CredenzaContent>
 				<CredenzaHeader>
 					<CredenzaTitle>Start endless mode</CredenzaTitle>

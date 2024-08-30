@@ -8,6 +8,9 @@ import {Toaster} from '@/components/ui/sonner'
 import ProgressBarProvider from '@/components/providers/progress-bar-provider'
 import WatpadPostHogProvider from '@/components/providers/posthog-provider'
 import {SpeedInsights} from '@vercel/speed-insights/next'
+import {RiokoProvider} from 'rioko'
+import {Popover, PopoverTrigger} from '@/components/ui/popover'
+import DebugPanel from '@/DebugPanel'
 
 const geistSans = localFont({
 	src: './fonts/GeistVF.woff',
@@ -35,32 +38,39 @@ export const metadata: Metadata = {
 	authors: [{ name: 'Subhajit Kundu', url: portfolio }]
 }
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode
 }>) {
 	return (
 		<html lang="en">
-			<WatpadPostHogProvider>
-				<body className={`${geistSans.variable} ${geistMono.variable}`}>
-					<ProgressBarProvider>
-						<ThemeProvider
-							attribute="class"
-							defaultTheme="dark"
-							disableTransitionOnChange
-						>
-							<GlobalStateProvider>
-								<div vaul-drawer-wrapper="" className="bg-background">
-									{children}
-									<Toaster/>
-									<SpeedInsights/>
-								</div>
-							</GlobalStateProvider>
-						</ThemeProvider>
-					</ProgressBarProvider>
-				</body>
-			</WatpadPostHogProvider>
+			<RiokoProvider
+				userId="subhajitkundu"
+				wrapper={Popover}
+				triggerWrapper={PopoverTrigger}
+			>
+				<WatpadPostHogProvider>
+					<body className={`${geistSans.variable} ${geistMono.variable}`}>
+						<ProgressBarProvider>
+							<ThemeProvider
+								attribute="class"
+								defaultTheme="dark"
+								disableTransitionOnChange
+							>
+								<GlobalStateProvider>
+									<div vaul-drawer-wrapper="" className="bg-background">
+										{children}
+										<Toaster/>
+										<SpeedInsights/>
+										{process.env.VERCEL_ENV !== 'production' && <DebugPanel />}
+									</div>
+								</GlobalStateProvider>
+							</ThemeProvider>
+						</ProgressBarProvider>
+					</body>
+				</WatpadPostHogProvider>
+			</RiokoProvider>
 		</html>
 	)
 }
